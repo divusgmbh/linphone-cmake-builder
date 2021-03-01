@@ -73,9 +73,10 @@ if(ENABLE_LIME_X3DH)
 	lcb_dependencies("lime")
 endif()
 
-if(ENABLE_OPENLDAP)
-	lcb_dependencies("cyrussasl")
-	lcb_dependencies("openldap")
+if(ENABLE_LDAP)
+	if(NOT WIN32)
+		lcb_dependencies("openldap")
+	endif()
 endif()
 
 lcb_cmake_options(
@@ -104,5 +105,5 @@ lcb_cmake_options(
 	"-DENABLE_ASSETS=${ENABLE_ASSETS}"
 	"-DENABLE_DB_STORAGE=${ENABLE_DB_STORAGE}"
 	"-DENABLE_ADVANCED_IM=${ENABLE_ADVANCED_IM}"
-	"-DENABLE_OPENLDAP=${ENABLE_OPENLDAP}"
+	"-DENABLE_LDAP=${ENABLE_LDAP}"
 )
